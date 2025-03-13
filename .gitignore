@@ -8,5 +8,5 @@ readme.txt
 output_*.csv
 dist/
 build/
-Painter.code-workspace*
+Painter.code-workspace
 settings.json
