@@ -22,10 +22,7 @@ SerialConfig = namedtuple('SerialConfig', ['port', 'baud_rate', 'use_port'])
 
 
 class Painter(QDialog, Ui_Dialog):
-    CLEAR_COMMAND = ('10 31 10 32 10 33 10 34 10 35 10 36 10 37 10 38 10 39 10 3A'
-                     '10 3B 10 3C 10 3D 10 3E 10 3F 10 40 10 41 10 42 10 43 10 44'
-                     '10 45 10 46 10 47 10 48 10 49 10 4A 10 4B 10 4C 10 4D 10 4E'
-                     '10 4F')
+    CLEAR_COMMAND = '103110321033103410351036103710381039103A103B103C103D103E103F104010411042104310441045104610471048'
 
     def __init__(self):
         super().__init__()
@@ -55,9 +52,9 @@ class Painter(QDialog, Ui_Dialog):
         self.timer.start(1000)  # 每秒更新一次
 
         # 在self.plainTextEdit3 接收到第一个字符时，开始计时，1s后调用self.on_timeout3
-        # 创建一个 QTimer 对象，设置超时时间为 500 毫秒
+        # 创建一个 QTimer 对象，设置超时时间为 1000 毫秒
         self.timer3 = QTimer(self)
-        self.timer3.setInterval(500)  # 设置定时器间隔时间
+        self.timer3.setInterval(1000)  # 设置定时器间隔时间
         self.timer3.setSingleShot(True)  # 设置为单次触发
         self.timer3.timeout.connect(self.on_timeout3)  # 连接超时信号到槽函数
 
@@ -134,7 +131,8 @@ class Painter(QDialog, Ui_Dialog):
         trimmed_text = self.plainTextEdit3.toPlainText().strip()
         text = trimmed_text[-8:].strip() if trimmed_text else ''
         self.lineEdit3.setText(text)
-        self.plainTextEdit4.setFocus()
+        if trimmed_text:
+            self.plainTextEdit4.setFocus()
 
     @Slot()
     def plainTextEdit4_textChanged(self):
@@ -145,7 +143,8 @@ class Painter(QDialog, Ui_Dialog):
         trimmed_text = self.plainTextEdit4.toPlainText().strip()
         text = Painter.extract_substring(trimmed_text, 'LOT', 8)
         self.lineEdit4.setText(text)
-        self.plainTextEdit3.setFocus()
+        if not trimmed_text:
+            self.plainTextEdit3.setFocus()
 
     @Slot()
     def plainTextEdit6_textChanged(self):
@@ -231,9 +230,9 @@ class Painter(QDialog, Ui_Dialog):
         :param check_status: 核对状态，决定是否发送text_to_send。
         :return: 串口操作状态，'GOOD' 表示成功，'' 表示未使用串口，'BAD' 表示操作失败。
         '''
-        serial_comm = None
         if not config.use_port:
             return ''
+        serial_comm = None
         status = 'BAD'
         try:
             serial_comm = SerialCommunication()
