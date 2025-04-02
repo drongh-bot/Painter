@@ -55,9 +55,9 @@ class Painter(QDialog, Ui_Dialog):
         self.timer.start(1000)  # 每秒更新一次
 
         # 在self.plainTextEdit3 接收到第一个字符时，开始计时，1s后调用self.on_timeout3
-        # 创建一个 QTimer 对象，设置超时时间为 1000 毫秒
+        # 创建一个 QTimer 对象，设置超时时间为 500 毫秒
         self.timer3 = QTimer(self)
-        self.timer3.setInterval(1000)  # 设置定时器间隔时间
+        self.timer3.setInterval(500)  # 设置定时器间隔时间
         self.timer3.setSingleShot(True)  # 设置为单次触发
         self.timer3.timeout.connect(self.on_timeout3)  # 连接超时信号到槽函数
 
@@ -145,6 +145,7 @@ class Painter(QDialog, Ui_Dialog):
         trimmed_text = self.plainTextEdit4.toPlainText().strip()
         text = Painter.extract_substring(trimmed_text, 'LOT', 8)
         self.lineEdit4.setText(text)
+        self.plainTextEdit3.setFocus()
 
     @Slot()
     def plainTextEdit6_textChanged(self):
@@ -219,7 +220,6 @@ class Painter(QDialog, Ui_Dialog):
         self.plainTextEdit4.clear()
         self.plainTextEdit5.clear()
         self.plainTextEdit6.clear()
-        self.plainTextEdit3.setFocus()
 
     def _operate_serial_port(self, config, clear_command, text_to_send, check_status):
         '''
