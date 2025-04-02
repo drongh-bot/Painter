@@ -122,7 +122,7 @@ class Painter(QDialog, Ui_Dialog):
     def plainTextEdit4_enterPressed(self):
         trimmed_text = self.plainTextEdit4.toPlainText().strip()
         text = Painter.extract_substring(trimmed_text, 'LOT', 8)
-        self.lineEdit4.setText(text)
+        self.lineEdit4.setText(text[1:])
         self.get_data()
 
     @Slot()

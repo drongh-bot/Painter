@@ -23,6 +23,7 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDialog,
     QWidget)
 
 from MyPlainTextEdit import MyPlainTextEdit
+import icons_rc
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -34,6 +35,9 @@ class Ui_Dialog(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
         Dialog.setSizePolicy(sizePolicy)
+        icon = QIcon()
+        icon.addFile(u":/newPrefix/barcode.ico", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        Dialog.setWindowIcon(icon)
         self.horizontalLayout = QHBoxLayout(Dialog)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.tabWidget = QTabWidget(Dialog)
@@ -328,20 +332,6 @@ class Ui_Dialog(object):
         self.label_3.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.gridLayout.addWidget(self.label_3, 0, 4, 1, 1)
-
-        self.label_17 = QLabel(self.tab1)
-        self.label_17.setObjectName(u"label_17")
-        font = QFont()
-        font.setPointSize(48)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setStrikeOut(False)
-        font.setKerning(True)
-        self.label_17.setFont(font)
-        self.label_17.setScaledContents(True)
-        self.label_17.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        self.gridLayout.addWidget(self.label_17, 0, 0, 2, 2)
 
         self.gridLayout.setColumnStretch(0, 1)
         self.gridLayout.setColumnStretch(1, 1)
@@ -762,7 +752,6 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"\u55b7\u7801", None))
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(7)
         ___qtablewidgetitem.setText(QCoreApplication.translate("Dialog", u"\u901a\u8baf\u72b6\u6001\u4e8c", None));
-        self.label_17.setText(QCoreApplication.translate("Dialog", u"ROGERS", None))
         self.comboBoxSerial1.setItemText(0, QCoreApplication.translate("Dialog", u"COM1", None))
         self.comboBoxSerial1.setItemText(1, QCoreApplication.translate("Dialog", u"COM2", None))
         self.comboBoxSerial1.setItemText(2, QCoreApplication.translate("Dialog", u"COM3", None))
