@@ -1,10 +1,5 @@
-import logging
 from PySide6.QtSerialPort import QSerialPort, QSerialPortInfo
 from PySide6.QtCore import QByteArray
-
-# 配置日志记录
-logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 class SerialCommunicationError(Exception):
@@ -27,7 +22,6 @@ class SerialCommunication:
 
         if not self.serial.open(QSerialPort.ReadWrite):
             raise SerialCommunicationError('打开串口失败。')
-        logging.info(f'串口 {port} 已打开，波特率为 {baud_rate}。')
 
     def send(self, text: str) -> None:
         try:
@@ -36,12 +30,9 @@ class SerialCommunication:
             message.append(b'\x03')
             self.serial.write(message)
             self.__wait_for_acknowledgment()
-            logging.info(f'发送数据成功：{text}')
         except (ValueError, SerialCommunicationError) as e:
-            logging.error(f'发送数据时出错：{e}')
             raise SerialCommunicationError(f'发送数据时出错：{e}') from e
         except Exception as e:
-            logging.error(f'未知错误：{e}')
             raise SerialCommunicationError(f'未知错误：{e}') from e
 
     def __wait_for_acknowledgment(self) -> None:
@@ -61,4 +52,3 @@ class SerialCommunication:
     def close_serial_port(self) -> None:
         if self.serial.isOpen():
             self.serial.close()
-            logging.info('串口已关闭。')

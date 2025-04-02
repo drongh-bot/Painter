@@ -14,7 +14,7 @@ from painter_ui import Ui_Dialog
 from serialCommunication import SerialCommunication, SerialCommunicationError
 
 # 配置日志记录
-logging.basicConfig(level=logging.INFO,
+logging.basicConfig(filename='serialCommunication.log', level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 # 定义 namedtuple
@@ -54,15 +54,15 @@ class Painter(QDialog, Ui_Dialog):
         self.timer.timeout.connect(self.update_time)
         self.timer.start(1000)  # 每秒更新一次
 
-        # 在self.plainTextEdit3 最后一个字符切换焦点
-        # 创建一个 QTimer 对象，设置超时时间为 500 毫秒
+        # 在self.plainTextEdit3 接收到第一个字符时，开始计时，1s后调用self.on_timeout3
+        # 创建一个 QTimer 对象，设置超时时间为 1000 毫秒
         self.timer3 = QTimer(self)
         self.timer3.setInterval(1000)  # 设置定时器间隔时间
         self.timer3.setSingleShot(True)  # 设置为单次触发
         self.timer3.timeout.connect(self.on_timeout3)  # 连接超时信号到槽函数
 
-        # 在self.plainTextEdit4 最后一个字符切换焦点
-        # 创建一个 QTimer 对象，设置超时时间为 500 毫秒
+        # 在self.plainTextEdit4 接收到第一个字符时，开始计时，1s后调用self.on_timeout4
+        # 创建一个 QTimer 对象，设置超时时间为 1000 毫秒
         self.timer4 = QTimer(self)
         self.timer4.setInterval(1000)
         self.timer4.setSingleShot(True)
@@ -229,19 +229,19 @@ class Painter(QDialog, Ui_Dialog):
         :param clear_command: 清空命令字符串。
         :param text_to_send: 需要发送的文本数据。
         :param check_status: 核对状态，决定是否发送text_to_send。
-        :return: 串口操作状态，'Good' 表示成功，'' 表示未使用串口，'Bad' 表示操作失败。
+        :return: 串口操作状态，'GOOD' 表示成功，'' 表示未使用串口，'BAD' 表示操作失败。
         '''
         serial_comm = None
         if not config.use_port:
             return ''
-        status = 'Bad'
+        status = 'BAD'
         try:
             serial_comm = SerialCommunication()
             serial_comm.open_serial_port(config.port, config.baud_rate)
             serial_comm.send(clear_command)
             if check_status == 'OK':
                 serial_comm.send(text_to_send)
-            status = 'Good'
+            status = 'GOOD'
         except SerialCommunicationError as e:
             logging.error(f'串口{config.port}错误: {e}')
             QMessageBox.warning(self, f'串口{config.port}错误', str(e))
@@ -284,7 +284,7 @@ class Painter(QDialog, Ui_Dialog):
         self.tableWidget.insertRow(0)
         for i, text in enumerate(row_data):
             item = QTableWidgetItem(text)
-            if item.text() in ['Bad', 'NG']:
+            if item.text() in ['BAD', 'NG']:
                 item.setBackground(QColor('red'))
             item.setTextAlignment(Qt.AlignCenter)
             item.setFlags(item.flags() & ~Qt.ItemIsEditable)
