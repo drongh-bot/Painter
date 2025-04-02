@@ -54,13 +54,27 @@ class Painter(QDialog, Ui_Dialog):
         self.timer.timeout.connect(self.update_time)
         self.timer.start(1000)  # 每秒更新一次
 
+        # 在self.plainTextEdit3 最后一个字符切换焦点
+        # 创建一个 QTimer 对象，设置超时时间为 500 毫秒
+        self.timer3 = QTimer(self)
+        self.timer3.setInterval(1000)  # 设置定时器间隔时间
+        self.timer3.setSingleShot(True)  # 设置为单次触发
+        self.timer3.timeout.connect(self.on_timeout3)  # 连接超时信号到槽函数
+
+        # 在self.plainTextEdit4 最后一个字符切换焦点
+        # 创建一个 QTimer 对象，设置超时时间为 500 毫秒
+        self.timer4 = QTimer(self)
+        self.timer4.setInterval(1000)
+        self.timer4.setSingleShot(True)
+        self.timer4.timeout.connect(self.on_timeout4)
+
         self.pushButton1.clicked.connect(self.get_data)
         self.pushButton2.clicked.connect(self.send_data)
         self.pushButton3.clicked.connect(self.save_settings)
-        self.plainTextEdit3.enterPressed.connect(
-            self.plainTextEdit3_enterPressed)
-        self.plainTextEdit4.enterPressed.connect(
-            self.plainTextEdit4_enterPressed)
+        self.plainTextEdit3.textChanged.connect(
+            self.plainTextEdit3_textChanged)
+        self.plainTextEdit4.textChanged.connect(
+            self.plainTextEdit4_textChanged)
         self.plainTextEdit6.textChanged.connect(
             self.plainTextEdit6_textChanged)
         self.lineEdit3.textChanged.connect(self.check_content)
@@ -112,23 +126,31 @@ class Painter(QDialog, Ui_Dialog):
             if result_status == 'NG' else 'QLineEdit {background-color:white}')
 
     @Slot()
-    def plainTextEdit3_enterPressed(self):
+    def plainTextEdit3_textChanged(self):
+        self.timer3.start()
+
+    @Slot()
+    def on_timeout3(self):
         trimmed_text = self.plainTextEdit3.toPlainText().strip()
         text = trimmed_text[-8:].strip() if trimmed_text else ''
         self.lineEdit3.setText(text)
         self.plainTextEdit4.setFocus()
 
     @Slot()
-    def plainTextEdit4_enterPressed(self):
+    def plainTextEdit4_textChanged(self):
+        self.timer4.start()
+
+    @Slot()
+    def on_timeout4(self):
         trimmed_text = self.plainTextEdit4.toPlainText().strip()
         text = Painter.extract_substring(trimmed_text, 'LOT', 8)
-        self.lineEdit4.setText(text[1:])
+        self.lineEdit4.setText(text)
         self.get_data()
 
     @Slot()
     def plainTextEdit6_textChanged(self):
         trimmed_text = self.plainTextEdit6.toPlainText().strip()
-        text = Painter.extract_substring(trimmed_text, 'LR', 9)
+        text = Painter.extract_substring(trimmed_text, 'LR', 8)
         self.lineEdit5.setText(text)
 
     @staticmethod
@@ -144,7 +166,7 @@ class Painter(QDialog, Ui_Dialog):
         if original_text:
             index = original_text.find(marker_text)
             if index != -1:
-                start_index = index + len(marker_text)
+                start_index = index + 1 + len(marker_text)
                 result_text = original_text[start_index:start_index + length].strip()
         return result_text
 

@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'painter.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.2
+## Created by: Qt User Interface Compiler version 6.8.3
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -21,9 +21,7 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDialog,
     QPlainTextEdit, QPushButton, QSizePolicy, QSpacerItem,
     QTabWidget, QTableWidget, QTableWidgetItem, QVBoxLayout,
     QWidget)
-
-from MyPlainTextEdit import MyPlainTextEdit
-import icons_rc
+import appIcon_rc
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -94,7 +92,7 @@ class Ui_Dialog(object):
 
         self.gridLayout.addWidget(self.plainTextEdit5, 1, 4, 1, 1)
 
-        self.plainTextEdit3 = MyPlainTextEdit(self.tab1)
+        self.plainTextEdit3 = QPlainTextEdit(self.tab1)
         self.plainTextEdit3.setObjectName(u"plainTextEdit3")
         self.plainTextEdit3.setMaximumSize(QSize(16777215, 80))
         self.plainTextEdit3.setFocusPolicy(Qt.FocusPolicy.ClickFocus)
@@ -173,7 +171,7 @@ class Ui_Dialog(object):
 
         self.gridLayout.addWidget(self.tableWidget, 6, 0, 1, 6)
 
-        self.plainTextEdit4 = MyPlainTextEdit(self.tab1)
+        self.plainTextEdit4 = QPlainTextEdit(self.tab1)
         self.plainTextEdit4.setObjectName(u"plainTextEdit4")
         self.plainTextEdit4.setMaximumSize(QSize(16777215, 80))
         self.plainTextEdit4.setFocusPolicy(Qt.FocusPolicy.ClickFocus)
