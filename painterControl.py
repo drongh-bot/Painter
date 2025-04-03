@@ -10,7 +10,7 @@ from PySide6.QtCore import Qt, QTimer, Slot
 from PySide6.QtGui import QColor
 from PySide6.QtWidgets import QApplication, QDialog, QTableWidgetItem, QHeaderView, QMessageBox
 
-from painter_ui import Ui_Dialog
+from painter_ui import Ui_Painter
 from serialCommunication import SerialCommunication, SerialCommunicationError
 
 # 配置日志记录
@@ -21,7 +21,7 @@ logging.basicConfig(filename='serialCommunication.log', level=logging.INFO,
 SerialConfig = namedtuple('SerialConfig', ['port', 'baud_rate', 'use_port'])
 
 
-class Painter(QDialog, Ui_Dialog):
+class Painter(QDialog, Ui_Painter):
     CLEAR_COMMAND = '103110321033103410351036103710381039103A103B103C103D103E103F104010411042104310441045104610471048'
 
     def __init__(self):

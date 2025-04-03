@@ -23,22 +23,22 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDialog,
     QWidget)
 import appIcon_rc
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        if not Dialog.objectName():
-            Dialog.setObjectName(u"Dialog")
-        Dialog.resize(1236, 769)
+class Ui_Painter(object):
+    def setupUi(self, Painter):
+        if not Painter.objectName():
+            Painter.setObjectName(u"Painter")
+        Painter.resize(1236, 769)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
-        Dialog.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(Painter.sizePolicy().hasHeightForWidth())
+        Painter.setSizePolicy(sizePolicy)
         icon = QIcon()
         icon.addFile(u":/newPrefix/barcode.ico", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        Dialog.setWindowIcon(icon)
-        self.horizontalLayout = QHBoxLayout(Dialog)
+        Painter.setWindowIcon(icon)
+        self.horizontalLayout = QHBoxLayout(Painter)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.tabWidget = QTabWidget(Dialog)
+        self.tabWidget = QTabWidget(Painter)
         self.tabWidget.setObjectName(u"tabWidget")
 #if QT_CONFIG(statustip)
         self.tabWidget.setStatusTip(u"")
@@ -734,7 +734,7 @@ class Ui_Dialog(object):
         self.horizontalLayout.addWidget(self.tabWidget)
 
 
-        self.retranslateUi(Dialog)
+        self.retranslateUi(Painter)
 
         self.tabWidget.setCurrentIndex(0)
         self.comboBoxSerial1.setCurrentIndex(0)
@@ -743,56 +743,56 @@ class Ui_Dialog(object):
         self.comboBoxSerial4.setCurrentIndex(2)
 
 
-        QMetaObject.connectSlotsByName(Dialog)
+        QMetaObject.connectSlotsByName(Painter)
     # setupUi
 
-    def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"\u55b7\u7801", None))
+    def retranslateUi(self, Painter):
+        Painter.setWindowTitle(QCoreApplication.translate("Painter", u"\u55b7\u7801", None))
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(7)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("Dialog", u"\u901a\u8baf\u72b6\u6001\u4e8c", None));
-        self.comboBoxSerial1.setItemText(0, QCoreApplication.translate("Dialog", u"COM1", None))
-        self.comboBoxSerial1.setItemText(1, QCoreApplication.translate("Dialog", u"COM2", None))
-        self.comboBoxSerial1.setItemText(2, QCoreApplication.translate("Dialog", u"COM3", None))
-        self.comboBoxSerial1.setItemText(3, QCoreApplication.translate("Dialog", u"COM4", None))
-        self.comboBoxSerial1.setItemText(4, QCoreApplication.translate("Dialog", u"COM5", None))
-        self.comboBoxSerial1.setItemText(5, QCoreApplication.translate("Dialog", u"COM6", None))
-        self.comboBoxSerial1.setItemText(6, QCoreApplication.translate("Dialog", u"COM7", None))
-        self.comboBoxSerial1.setItemText(7, QCoreApplication.translate("Dialog", u"COM8", None))
-        self.comboBoxSerial1.setItemText(8, QCoreApplication.translate("Dialog", u"COM9", None))
-        self.comboBoxSerial1.setItemText(9, QCoreApplication.translate("Dialog", u"COM10", None))
+        ___qtablewidgetitem.setText(QCoreApplication.translate("Painter", u"\u901a\u8baf\u72b6\u6001\u4e8c", None));
+        self.comboBoxSerial1.setItemText(0, QCoreApplication.translate("Painter", u"COM1", None))
+        self.comboBoxSerial1.setItemText(1, QCoreApplication.translate("Painter", u"COM2", None))
+        self.comboBoxSerial1.setItemText(2, QCoreApplication.translate("Painter", u"COM3", None))
+        self.comboBoxSerial1.setItemText(3, QCoreApplication.translate("Painter", u"COM4", None))
+        self.comboBoxSerial1.setItemText(4, QCoreApplication.translate("Painter", u"COM5", None))
+        self.comboBoxSerial1.setItemText(5, QCoreApplication.translate("Painter", u"COM6", None))
+        self.comboBoxSerial1.setItemText(6, QCoreApplication.translate("Painter", u"COM7", None))
+        self.comboBoxSerial1.setItemText(7, QCoreApplication.translate("Painter", u"COM8", None))
+        self.comboBoxSerial1.setItemText(8, QCoreApplication.translate("Painter", u"COM9", None))
+        self.comboBoxSerial1.setItemText(9, QCoreApplication.translate("Painter", u"COM10", None))
 
-        self.comboBoxSerial2.setItemText(0, QCoreApplication.translate("Dialog", u"2400", None))
-        self.comboBoxSerial2.setItemText(1, QCoreApplication.translate("Dialog", u"4800", None))
-        self.comboBoxSerial2.setItemText(2, QCoreApplication.translate("Dialog", u"9600", None))
-        self.comboBoxSerial2.setItemText(3, QCoreApplication.translate("Dialog", u"14400", None))
-        self.comboBoxSerial2.setItemText(4, QCoreApplication.translate("Dialog", u"19200", None))
-        self.comboBoxSerial2.setItemText(5, QCoreApplication.translate("Dialog", u"38400", None))
-        self.comboBoxSerial2.setItemText(6, QCoreApplication.translate("Dialog", u"56000", None))
-        self.comboBoxSerial2.setItemText(7, QCoreApplication.translate("Dialog", u"57600", None))
-        self.comboBoxSerial2.setItemText(8, QCoreApplication.translate("Dialog", u"115200", None))
+        self.comboBoxSerial2.setItemText(0, QCoreApplication.translate("Painter", u"2400", None))
+        self.comboBoxSerial2.setItemText(1, QCoreApplication.translate("Painter", u"4800", None))
+        self.comboBoxSerial2.setItemText(2, QCoreApplication.translate("Painter", u"9600", None))
+        self.comboBoxSerial2.setItemText(3, QCoreApplication.translate("Painter", u"14400", None))
+        self.comboBoxSerial2.setItemText(4, QCoreApplication.translate("Painter", u"19200", None))
+        self.comboBoxSerial2.setItemText(5, QCoreApplication.translate("Painter", u"38400", None))
+        self.comboBoxSerial2.setItemText(6, QCoreApplication.translate("Painter", u"56000", None))
+        self.comboBoxSerial2.setItemText(7, QCoreApplication.translate("Painter", u"57600", None))
+        self.comboBoxSerial2.setItemText(8, QCoreApplication.translate("Painter", u"115200", None))
 
-        self.groupBox_3.setTitle(QCoreApplication.translate("Dialog", u"\u55b7\u7801\u673a\u4e8c\u8bbe\u7f6e", None))
-        self.comboBoxSerial3.setItemText(0, QCoreApplication.translate("Dialog", u"COM1", None))
-        self.comboBoxSerial3.setItemText(1, QCoreApplication.translate("Dialog", u"COM2", None))
-        self.comboBoxSerial3.setItemText(2, QCoreApplication.translate("Dialog", u"COM3", None))
-        self.comboBoxSerial3.setItemText(3, QCoreApplication.translate("Dialog", u"COM4", None))
-        self.comboBoxSerial3.setItemText(4, QCoreApplication.translate("Dialog", u"COM5", None))
-        self.comboBoxSerial3.setItemText(5, QCoreApplication.translate("Dialog", u"COM6", None))
-        self.comboBoxSerial3.setItemText(6, QCoreApplication.translate("Dialog", u"COM7", None))
-        self.comboBoxSerial3.setItemText(7, QCoreApplication.translate("Dialog", u"COM8", None))
-        self.comboBoxSerial3.setItemText(8, QCoreApplication.translate("Dialog", u"COM9", None))
-        self.comboBoxSerial3.setItemText(9, QCoreApplication.translate("Dialog", u"COM10", None))
+        self.groupBox_3.setTitle(QCoreApplication.translate("Painter", u"\u55b7\u7801\u673a\u4e8c\u8bbe\u7f6e", None))
+        self.comboBoxSerial3.setItemText(0, QCoreApplication.translate("Painter", u"COM1", None))
+        self.comboBoxSerial3.setItemText(1, QCoreApplication.translate("Painter", u"COM2", None))
+        self.comboBoxSerial3.setItemText(2, QCoreApplication.translate("Painter", u"COM3", None))
+        self.comboBoxSerial3.setItemText(3, QCoreApplication.translate("Painter", u"COM4", None))
+        self.comboBoxSerial3.setItemText(4, QCoreApplication.translate("Painter", u"COM5", None))
+        self.comboBoxSerial3.setItemText(5, QCoreApplication.translate("Painter", u"COM6", None))
+        self.comboBoxSerial3.setItemText(6, QCoreApplication.translate("Painter", u"COM7", None))
+        self.comboBoxSerial3.setItemText(7, QCoreApplication.translate("Painter", u"COM8", None))
+        self.comboBoxSerial3.setItemText(8, QCoreApplication.translate("Painter", u"COM9", None))
+        self.comboBoxSerial3.setItemText(9, QCoreApplication.translate("Painter", u"COM10", None))
 
-        self.comboBoxSerial4.setItemText(0, QCoreApplication.translate("Dialog", u"2400", None))
-        self.comboBoxSerial4.setItemText(1, QCoreApplication.translate("Dialog", u"4800", None))
-        self.comboBoxSerial4.setItemText(2, QCoreApplication.translate("Dialog", u"9600", None))
-        self.comboBoxSerial4.setItemText(3, QCoreApplication.translate("Dialog", u"14400", None))
-        self.comboBoxSerial4.setItemText(4, QCoreApplication.translate("Dialog", u"19200", None))
-        self.comboBoxSerial4.setItemText(5, QCoreApplication.translate("Dialog", u"38400", None))
-        self.comboBoxSerial4.setItemText(6, QCoreApplication.translate("Dialog", u"56000", None))
-        self.comboBoxSerial4.setItemText(7, QCoreApplication.translate("Dialog", u"57600", None))
-        self.comboBoxSerial4.setItemText(8, QCoreApplication.translate("Dialog", u"115200", None))
+        self.comboBoxSerial4.setItemText(0, QCoreApplication.translate("Painter", u"2400", None))
+        self.comboBoxSerial4.setItemText(1, QCoreApplication.translate("Painter", u"4800", None))
+        self.comboBoxSerial4.setItemText(2, QCoreApplication.translate("Painter", u"9600", None))
+        self.comboBoxSerial4.setItemText(3, QCoreApplication.translate("Painter", u"14400", None))
+        self.comboBoxSerial4.setItemText(4, QCoreApplication.translate("Painter", u"19200", None))
+        self.comboBoxSerial4.setItemText(5, QCoreApplication.translate("Painter", u"38400", None))
+        self.comboBoxSerial4.setItemText(6, QCoreApplication.translate("Painter", u"56000", None))
+        self.comboBoxSerial4.setItemText(7, QCoreApplication.translate("Painter", u"57600", None))
+        self.comboBoxSerial4.setItemText(8, QCoreApplication.translate("Painter", u"115200", None))
 
-        self.checkBox.setText(QCoreApplication.translate("Dialog", u"\u542f\u7528", None))
+        self.checkBox.setText(QCoreApplication.translate("Painter", u"\u542f\u7528", None))
     # retranslateUi
 
